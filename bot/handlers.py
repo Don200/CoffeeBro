@@ -1,10 +1,9 @@
-from aiogram import F, Router, types
+from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram import flags
-from aiogram.fsm.context import FSMContext
-import utils
-import texts
+import bot.utils as utils
+import bot.texts as texts
 
 router = Router()
 @router.message(Command("start"))
@@ -13,7 +12,7 @@ async def start_handler(msg: Message):
 
 @router.message()
 @flags.chat_action("typing")
-async def generate_text(msg: Message, state: FSMContext):
+async def generate_text(msg: Message):
     prompt = msg.text
     mesg = await msg.answer(texts.gen_wait)
     res = await utils.generate_text(prompt)

@@ -1,7 +1,7 @@
 import openai
 import logging
-from config_reader import config
-import texts
+from bot.config_reader import config
+import bot.texts as texts
 from openai import AsyncOpenAI
 client = AsyncOpenAI(
     api_key=config.OPENAI_TOKEN
